@@ -13,7 +13,7 @@
           - nginx
           - python3
           - python3-pip
-          - python-pip
+#           - python-pip
 
     - name: Install python-crontab lib
       pip:
@@ -28,11 +28,11 @@
         - /tmp/files
         - /tmp/scripts
  
-    - name: Copy cron runnig script
-      copy:
-          src: file_cron.py
-          dest: /tmp/scripts/file_cron.py
-          mode: "0777"
+#     - name: Copy cron runnig script
+#       copy:
+#           src: file_cron.py
+#           dest: /tmp/scripts/file_cron.py
+#           mode: "0777"
 
     - name: Start nginx service
       service:
@@ -61,7 +61,7 @@
           state: restarted
 
     - name: run cron 
-      command: file_cron.py
+      command: python3 /tmp/scripts/file_cron.py
 
     - name: replace state file
       command: cp /tmp/files/service_state /opt/service_state
