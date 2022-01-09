@@ -4,8 +4,8 @@
   become: yes
   
   tasks:
-#     - name: update_cache
-#       apt: update_cache=yes cache_valid_time=86400
+    - name: update_cache
+      apt: update_cache=yes cache_valid_time=86400
   
     - name: packages_installing
       apt:
