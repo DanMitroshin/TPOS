@@ -16,7 +16,7 @@
 #           - python-pip
 
     - name: install_crontab_lib
-      pip: name=python-crontab executable=pip3
+      pip3: name=python-crontab executable=pip3
 
     - name: create_dir_for_files
       file:
