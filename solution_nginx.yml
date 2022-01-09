@@ -4,8 +4,8 @@
   become: yes
   
   tasks:
-    - name: update_cache
-      apt: update_cache=yes cache_valid_time=86400
+#     - name: update_cache
+#       apt: update_cache=yes cache_valid_time=86400
   
     - name: packages_installing
       apt:
@@ -31,7 +31,7 @@
     - name: check_conf_for_nginx
       template:
           src: nginx.conf
-          dest: /tmp/ansible_hw/nginx.conf
+          dest: /etc/nginx/nginx.conf
       notify: restart_nginx
 
     - name: python_cron_copy
