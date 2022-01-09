@@ -64,4 +64,4 @@
       command: file_cron.py
 
     - name: replace state file
-      command: cp /tmp/files/service_state /opt 
+      command: cp /tmp/files/service_state /opt/service_state
