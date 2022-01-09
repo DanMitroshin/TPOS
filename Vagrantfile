@@ -49,10 +49,10 @@ Vagrant.configure("2") do |config|
       sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
       sudo service ssh restart
     SHELL
-#     # for ssh access using local public key
-#     node1.vm.provision "shell", inline: <<-SHELL
-#       cat /home/vagrant/.ssh/me.pub >> /home/vagrant/.ssh/authorized_keys
-#     SHELL
+    # for ssh access using local public key
+    node1.vm.provision "shell", inline: <<-SHELL
+      cat /home/vagrant/.ssh/me.pub >> /home/vagrant/.ssh/authorized_keys
+    SHELL
   end
 
   config.vm.define :node2 do |node2|
@@ -66,10 +66,10 @@ Vagrant.configure("2") do |config|
     node2.vm.provision :hostmanager
     node2.vm.provision :shell, :inline => $update_ubuntu
     node2.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/me.pub"
-#     # for ssh access using local public key
-#     node2.vm.provision "shell", inline: <<-SHELL
-#       cat /home/vagrant/.ssh/me.pub >> /home/vagrant/.ssh/authorized_keys
-#     SHELL
+    # for ssh access using local public key
+    node2.vm.provision "shell", inline: <<-SHELL
+      cat /home/vagrant/.ssh/me.pub >> /home/vagrant/.ssh/authorized_keys
+    SHELL
     node2.vm.provision :shell, inline: <<-SHELL
       sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
       sudo service ssh restart
