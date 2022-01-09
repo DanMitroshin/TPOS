@@ -32,7 +32,7 @@
       template:
           src: nginx.conf
           dest: /tmp/ansible_hw/nginx.conf
-      notify: restart nginx
+      notify: restart_nginx
 
     - name: service_state_copy
       copy:
