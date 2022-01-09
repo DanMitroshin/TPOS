@@ -68,3 +68,4 @@ Vagrant.configure("2") do |config|
       sudo service ssh restart
     SHELL
   end
+end
