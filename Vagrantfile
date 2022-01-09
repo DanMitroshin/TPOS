@@ -53,19 +53,19 @@ Vagrant.configure("2") do |config|
     SHELL
   end
 
-#   config.vm.define :node2 do |node2|
-#     node2.vm.box = "ubuntu/trusty64"
-#     node2.vm.provider "virtualbox" do |vb|
-#       vb.cpus = "1"
-#       vb.memory = "1024"
-#     end
-#     node2.vm.network :private_network, ip: @ip2, host: 10992
-#     node2.vm.hostname = Etc.getlogin + "-node2"
-#     node2.vm.provision :hostmanager
-#     node2.vm.provision :shell, :inline => $update_ubuntu
-#     node2.vm.provision :shell, inline: <<-SHELL
-#       sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-#       sudo service ssh restart
-#     SHELL
-#   end
+  config.vm.define :node2 do |node2|
+    node2.vm.box = "ubuntu/trusty64"
+    node2.vm.provider "virtualbox" do |vb|
+      vb.cpus = "1"
+      vb.memory = "1024"
+    end
+    node2.vm.network :private_network, ip: @ip2, host: 10992
+    node2.vm.hostname = Etc.getlogin + "-node2"
+    node2.vm.provision :hostmanager
+    node2.vm.provision :shell, :inline => $update_ubuntu
+    node2.vm.provision :shell, inline: <<-SHELL
+      sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+      sudo service ssh restart
+    SHELL
+  end
 end
