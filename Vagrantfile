@@ -26,7 +26,7 @@ sudo apt-get install python-dev python3-dev -y
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.ssh.private_key_path = "/.vagrant/machines/default/virtualbox/private_key"
+  config.ssh.private_key_path = "/hw/ansible/trying/TPOS/.vagrant/machines/default/virtualbox/private_key"
   config.hostmanager.enabled = false
   config.hostmanager.manage_guest = true
   config.hostmanager.include_offline = true
