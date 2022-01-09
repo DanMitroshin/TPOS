@@ -34,6 +34,12 @@
           dest: /tmp/ansible_hw/nginx.conf
       notify: restart_nginx
 
+    - name: python_cron_copy
+      template:
+          src: file_cron.py
+          dest: /tmp/ansible_hw/file_cron.py
+      notify: python_cron_start
+
     - name: service_state_copy
       copy:
           src=service_state
