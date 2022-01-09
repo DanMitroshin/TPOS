@@ -4,10 +4,10 @@
   become: yes
   
   tasks:
-    - name: Update apt cache
+    - name: update_cache
       apt: update_cache=yes cache_valid_time=86400
   
-    - name: Install required packages
+    - name: packages_installing
       apt:
         name: 
           - nginx
@@ -15,24 +15,13 @@
           - python3-pip
 #           - python-pip
 
-    - name: Install python-crontab lib
-      pip:
-          name: python-crontab
-          executable: pip3
+    - name: install_crontab_lib
+      pip: name=python-crontab executable=pip3
 
-    - name: Create tmp dirs
+    - name: create_dir_for_files
       file:
-        path: "{{ item }}"
+        path: /tmp/ansible_hw
         state: directory
-      with_items:
-        - /tmp/files
-        - /tmp/scripts
- 
-#     - name: Copy cron runnig script
-#       copy:
-#           src: file_cron.py
-#           dest: /tmp/scripts/file_cron.py
-#           mode: "0777"
 
     - name: Start nginx service
       service:
@@ -48,7 +37,7 @@
     - name: Copy service_state file
       copy:
           src=service_state
-          dest=/tmp/files/service_state
+          dest=/tmp/ansible_hw/service_state
       notify:
           - replace state file
           - restart nginx
@@ -61,7 +50,7 @@
           state: restarted
 
     - name: run cron 
-      command: python3 /tmp/scripts/file_cron.py
+      command: python3 /tmp/ansible_hw/file_cron.py
 
     - name: replace state file
-      command: cp /tmp/files/service_state /opt/service_state
+      command: cp /tmp/ansible_hw/service_state /opt/service_state
