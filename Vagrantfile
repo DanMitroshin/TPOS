@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = "1"
       vb.memory = "1024"
     end
-    node1.vm.network :private_network, ip: @ip1
+    node1.vm.network :private_network, ip: @ip1, host: 10990
     node1.vm.hostname = Etc.getlogin + "-node1"
     node1.vm.provision :hostmanager
     node1.vm.provision :shell, :inline => $update_ubuntu
@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = "1"
       vb.memory = "1024"
     end
-    node2.vm.network :private_network, ip: @ip2
+    node2.vm.network :private_network, ip: @ip2, host: 10992
     node2.vm.hostname = Etc.getlogin + "-node2"
     node2.vm.provision :hostmanager
     node2.vm.provision :shell, :inline => $update_ubuntu
