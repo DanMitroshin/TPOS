@@ -30,8 +30,8 @@
  
     - name: Copy cron runnig script
       copy:
-          src: start_cron.py
-          dest: /tmp/scripts/start_cron.py
+          src: file_cron.py
+          dest: /tmp/scripts/file_cron.py
           mode: "0777"
 
     - name: Start nginx service
