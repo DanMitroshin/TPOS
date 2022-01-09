@@ -21,8 +21,12 @@ puts "%s-node1 with IP %s" % [Etc.getlogin, @ip1]
 puts "%s-node2 with IP %s" % [Etc.getlogin, @ip2]
 
 $update_ubuntu = <<SCRIPT
-sudo apt-get update
-sudo apt-get install python-dev python3-dev -y
+apt update
+apt install python-dev python3-dev -y
+SCRIPT
+
+$update_centos = <<SCRIPT
+sudo yum -y install python-devel python3-devel
 SCRIPT
 
 Vagrant.configure("2") do |config|
@@ -31,7 +35,6 @@ Vagrant.configure("2") do |config|
   config.hostmanager.include_offline = true
   config.hostmanager.ignore_private_ip = false
   config.ssh.forward_agent = true
-# config.ssh.private_key_path = "/hw/ansible/trying/TPOS/.vagrant/machines/default/virtualbox/private_key"
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
   config.vm.define :node1 do |node1|
@@ -44,14 +47,9 @@ Vagrant.configure("2") do |config|
     node1.vm.hostname = Etc.getlogin + "-node1"
     node1.vm.provision :hostmanager
     node1.vm.provision :shell, :inline => $update_ubuntu
-    node1.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/me.pub"
     node1.vm.provision :shell, inline: <<-SHELL
       sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
       sudo service ssh restart
-    SHELL
-    # for ssh access using local public key
-    node1.vm.provision "shell", inline: <<-SHELL
-      cat /home/vagrant/.ssh/me.pub >> /home/vagrant/.ssh/authorized_keys
     SHELL
   end
 
@@ -65,15 +63,8 @@ Vagrant.configure("2") do |config|
     node2.vm.hostname = Etc.getlogin + "-node2"
     node2.vm.provision :hostmanager
     node2.vm.provision :shell, :inline => $update_ubuntu
-    node2.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/me.pub"
-    # for ssh access using local public key
-    node2.vm.provision "shell", inline: <<-SHELL
-      cat /home/vagrant/.ssh/me.pub >> /home/vagrant/.ssh/authorized_keys
-    SHELL
     node2.vm.provision :shell, inline: <<-SHELL
       sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
       sudo service ssh restart
     SHELL
   end
-
-end
