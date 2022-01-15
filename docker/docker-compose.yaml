@@ -33,4 +33,4 @@ services:
       - 17500:5000
 
 volumes:
-  data:
+  dbdata:
