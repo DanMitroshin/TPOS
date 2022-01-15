@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, orm
 
 from flask import Flask, request, abort
-from ..data import Product
+from dataproduct.data import Product
 
 
 app = Flask(__name__)
