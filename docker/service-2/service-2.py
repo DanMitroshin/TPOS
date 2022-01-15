@@ -3,7 +3,7 @@ from sys import stderr
 import pandas as pd
 from sqlalchemy import create_engine, orm
 
-from data import Base, Product
+from ..data import Base, Product
 
 
 if __name__ == '__main__':
