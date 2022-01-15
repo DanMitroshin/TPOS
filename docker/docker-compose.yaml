@@ -28,4 +28,4 @@ services:
     environment:
       FLASK_APP: service-3
     ports:
-      - 10995:10994
+      - 10995:5000
