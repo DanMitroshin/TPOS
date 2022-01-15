@@ -5,7 +5,7 @@ from dataproduct.data import Product
 
 app = Flask(__name__)
 
-engine = create_engine('mysql://root:@database:3306/db')
+engine = create_engine('mysql://root:@db:10991/db')
 session = orm.Session(engine)
 
 
