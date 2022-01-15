@@ -16,10 +16,10 @@ if __name__ == '__main__':
     print("|>>>> SUCCESS READ CSV")
     for id_row, row in df.iterrows():
         print(row)
-        product = Product(id=id_row, name= row["name"], cost=row["cost"])
+        product = Product(id=id_row + 1, name=row["name"], cost=row["cost"])
         session.add(product)
     session.commit()
 
-    print('Rows added:')
+    print('|>>>>> Rows added:')
     for product in session.query(Product).all():
         print(f' - id={product.id}, name="{product.name}", cost={product.cost}')
