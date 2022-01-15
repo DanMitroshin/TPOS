@@ -14,8 +14,6 @@ services:
     build:
       context: .
       dockerfile: service-2/Dockerfile-2
-    volumes:
-      - dbdata:/data
     restart: on-failure
     depends_on:
       - database
@@ -30,7 +28,4 @@ services:
     environment:
       FLASK_APP: service-3
     ports:
-      - 17500:5000
-
-volumes:
-  dbdata:
+      - 10995:5000
