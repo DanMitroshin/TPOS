@@ -5,7 +5,7 @@ from dataproduct.data import Product
 
 app = Flask(__name__)
 
-engine = create_engine('mysql+pymysql://root:@database:3306/db', pool_recycle=3600)
+engine = create_engine('mysql://root:@database:3306/db')
 session = orm.Session(engine)
 
 
@@ -28,7 +28,3 @@ def handler():
     if product is None:
         return "Unreal product id\n", 500
     return f"Product: {product.name} - {product.cost} RUB\n", 200
-
-
-if __name__ == '__main__':
-    app.run(port=10994)
