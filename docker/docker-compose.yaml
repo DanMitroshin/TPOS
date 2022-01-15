@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: service-2/Dockerfile-2
     volumes:
-      - dbdata:/dbdata
+      - dbdata:dbdata
     restart: on-failure
     depends_on:
       - database
