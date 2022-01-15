@@ -28,3 +28,7 @@ def handler():
     if product is None:
         return "Unreal product id\n", 500
     return f"Product: {product.name} - {product.cost} RUB\n", 200
+
+
+if __name__ == '__main__':
+    app.run(port=10994)
