@@ -12,7 +12,7 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     print("|>>>> START READ CSV")
 
-    df = pd.read_csv('dbdata/data.csv')
+    df = pd.read_csv('/dbdata/data.csv')
     print("|>>>> SUCCESS READ CSV")
     for id_row, row in df.iterrows():
         print(row)
