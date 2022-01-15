@@ -12,7 +12,7 @@ services:
 
   service-2:
     build:
-      context: .
+      context: ./service-2
       dockerfile: service-2/Dockerfile-2
     volumes:
       - data:/data
@@ -22,7 +22,7 @@ services:
 
   service-3:
     build:
-      context: .
+      context: ./service-3
       dockerfile: service-3/Dockerfile-3
     restart: on-failure
     depends_on:
