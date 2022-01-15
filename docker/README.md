@@ -1,5 +1,5 @@
-По умолчанию запуск на порту 17500 -- см. docker-compose
+По умолчанию запуск происходит на порту 10995
 
-csv-файл лежит в db-data/data.csv
+csv-файл лежит в dbdata/data.csv
 
 Запуск через команду: `docker-compose up --build && docker-compose down -v`
