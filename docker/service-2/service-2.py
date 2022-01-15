@@ -3,7 +3,7 @@ from sys import stderr
 import pandas as pd
 from sqlalchemy import create_engine, orm
 
-from ..data import Base, Product
+from dataproduct.data import Base, Product
 
 
 if __name__ == '__main__':
@@ -12,7 +12,7 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     print("|>>>> START READ CSV")
 
-    df = pd.read_csv('../db-data/data.csv')
+    df = pd.read_csv('dbdata/data.csv')
     print("|>>>> SUCCESS READ CSV")
     for id_row, row in df.iterrows():
         print(row)
