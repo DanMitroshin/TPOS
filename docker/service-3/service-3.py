@@ -11,20 +11,23 @@ session = orm.Session(engine)
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return 'Page not found. Error 404', 404
+    return 'Page not found. Error 404\n', 404
 
 
 @app.route('/health')
 def health():
-    return 'ok', 200
+    return 'ok\n', 200
 
 
 @app.route('/')
 def handler():
-    id_product = request.args.get('id')
-    if id_product is None:
-        abort(404)
-    product = session.query(Product).get({'id': id_product})
-    if region is None:
-        abort(404)
-    return f"Product: {product.name} - {product.cost} RUB"
+    try:
+        id_product = request.args.get('id')
+        if id_product is None:
+            abort(404)
+        product = session.query(Product).get({'id': id_product})
+        if region is None:
+            abort(404)
+        return f"Product: {product.name} - {product.cost} RUB\n", 200
+    except Exception as e:
+        return f"ERROR: {e}\n", 200
