@@ -1,5 +1,7 @@
 FROM python:3.8
 
 COPY ./service-2 .
+COPY ./dataproduct ./dataproduct
+COPY ./dbdata ./dbdata
 RUN pip install sqlalchemy pymysql pandas
 CMD python service-2.py
