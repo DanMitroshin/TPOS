@@ -3,15 +3,17 @@ from sys import stderr
 import pandas as pd
 from sqlalchemy import create_engine, orm
 
-from ..data import Base, Product
+from data import Base, Product
 
 
 if __name__ == '__main__':
     engine = create_engine('mysql+pymysql://root:@database:3306/db')
     session = orm.Session(engine)
     Base.metadata.create_all(engine)
+    print("|>>>> START READ CSV")
 
-    df = pd.read_csv('/db-data/data.csv')
+    df = pd.read_csv('../db-data/data.csv')
+    print("|>>>> SUCCESS READ CSV")
     for id_row, row in df.iterrows():
         print(row)
         product = Product(id=id_row, name= row["name"], cost=row["cost"])
