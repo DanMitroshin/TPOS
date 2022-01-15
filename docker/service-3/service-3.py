@@ -26,7 +26,7 @@ def handler():
         if id_product is None:
             abort(404)
         product = session.query(Product).get({'id': id_product})
-        if region is None:
+        if product is None:
             abort(404)
         return f"Product: {product.name} - {product.cost} RUB\n", 200
     except Exception as e:
