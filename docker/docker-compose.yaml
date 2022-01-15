@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  database:
+    image: "mysql:8.0.27"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  service-2:
+    build:
+      context: .
+      dockerfile: service-2/Dockerfile-2
+    volumes:
+      - data:/data
+    restart: on-failure
+    depends_on:
+      - database
+
+  service-3:
+    build:
+      context: .
+      dockerfile: service-3/Dockerfile-3
+    restart: on-failure
+    depends_on:
+      - database
+    environment:
+      FLASK_APP: service-3
+    ports:
+      - 17500:5000
+
+volumes:
+  data:
