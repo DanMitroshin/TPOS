@@ -28,7 +28,7 @@ services:
     depends_on:
       - database
     environment:
-      FLASK_APP: flask-app
+      FLASK_APP: service-3
     ports:
       - 17500:5000
 
