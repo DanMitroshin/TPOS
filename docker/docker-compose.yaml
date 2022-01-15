@@ -13,7 +13,7 @@ services:
   service-2:
     build:
       context: .
-      dockerfile: service-2/Dockerfile-2
+      dockerfile: service-2/Dockerfile
     restart: on-failure
     depends_on:
       - database
@@ -21,7 +21,7 @@ services:
   service-3:
     build:
       context: .
-      dockerfile: service-3/Dockerfile-3
+      dockerfile: service-3/Dockerfile
     restart: on-failure
     depends_on:
       - database
