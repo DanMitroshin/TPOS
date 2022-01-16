@@ -28,4 +28,4 @@ services:
     environment:
       FLASK_APP: flask_app
     ports:
-      - 10995:5000
+      - 10995:10995
