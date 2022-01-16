@@ -6,6 +6,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: products_db
+      MYSQL_TCP_PORT: 10994
       MYSQL_PASSWORD: ""
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     restart: on-failure
