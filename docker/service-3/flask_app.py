@@ -15,7 +15,7 @@ def get_health():
 
 
 @app.errorhandler(404)
-def not_found():
+def not_found(e):
     return 'Not found. Error 404\n', 404
 
 
