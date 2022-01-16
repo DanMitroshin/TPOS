@@ -27,18 +27,17 @@ def product_to_dict(p):
     }
 
 
-@app.route('/all')
 def get_all_products():
     queryset = session.query(Product).all()
     products = list(map(product_to_dict, queryset))
-    return jsonify(products)
+    return products
 
 
 @app.route('/')
 def get_product():
     id_product = request.args.get('id')
     if id_product is None:
-        return "Id is required\n", 500
+        return jsonify(get_all_products())
     product = session.query(Product).get({'id': id_product})
     if product is None:
         return "Unreal product id\n", 500
