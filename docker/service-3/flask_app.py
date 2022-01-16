@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from sqlalchemy import create_engine, orm
 from dataproduct.data import Product
 
@@ -11,7 +11,7 @@ session = orm.Session(engine)
 
 @app.route('/health')
 def get_health():
-    return 'ok\n', 200
+    return '200\n', 200
 
 
 @app.errorhandler(404)
@@ -21,10 +21,18 @@ def not_found():
 
 @app.route('/')
 def get_product():
+    def product_to_dict(p):
+        return {
+            'id': p.id,
+            'name': p.name,
+            'cost': p.cost,
+        }
     id_product = request.args.get('id')
     if id_product is None:
-        return "Not provide product id\n", 500
+        queryset = session.query(Product).all()
+        products = list(map(product_to_dict, queryset))
+        return jsonify(products)
     product = session.query(Product).get({'id': id_product})
     if product is None:
         return "Unreal product id\n", 500
-    return f"Product: {product.name} - {product.cost} RUB\n", 200
+    return jsonify(product)
