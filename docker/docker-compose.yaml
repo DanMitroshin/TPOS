@@ -1,7 +1,7 @@
 version: "3.0"
 
 services:
-  database:
+  db:
     image: "mysql:8.0.26"
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -17,7 +17,7 @@ services:
       dockerfile: service-2/Dockerfile
     restart: on-failure
     depends_on:
-      - database
+      - db
 
   service-3:
     build:
@@ -25,7 +25,7 @@ services:
       dockerfile: service-3/Dockerfile
     restart: on-failure
     depends_on:
-      - database
+      - db
     environment:
       FLASK_APP: flask_app
     ports:
