@@ -28,7 +28,7 @@ def product_to_dict(p):
 
 
 @app.route('/all')
-def get_product():
+def get_all_products():
     queryset = session.query(Product).all()
     products = list(map(product_to_dict, queryset))
     return jsonify(products)
