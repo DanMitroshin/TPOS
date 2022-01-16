@@ -23,7 +23,7 @@ def fill_db(session):
 
 
 if __name__ == '__main__':
-    engine = create_engine('mysql+pymysql://root:@database:10994/products_db')
+    engine = create_engine('mysql+pymysql://root:@db:10994/products_db')
     session = orm.Session(engine)
     Base.metadata.create_all(engine)
     
